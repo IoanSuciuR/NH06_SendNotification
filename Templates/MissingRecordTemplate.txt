@@ -1,0 +1,28 @@
+﻿{
+  "channel": "<<channel>>",
+  "text": "Missing record notification",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "⚠️ Missing Record Received",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "A missing record has been received in the *<<app>>* from *<<email>>*."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Content:*\n```<<content>>```"
+      }
+    }
+  ]
+}

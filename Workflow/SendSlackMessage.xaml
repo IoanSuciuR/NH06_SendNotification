@@ -1,0 +1,461 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendSlackMessage" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_To" Type="InArgument(x:String)" />
+    <x:Property Name="in_Body" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>SendSlackMessage_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Slack.Enums</x:String>
+      <x:String>UiPath.BAF.Enums</x:String>
+      <x:String>UiPath.Swagger.Models</x:String>
+      <x:String>UiPath.CodeGen.Models.Connection</x:String>
+      <x:String>UiPath.Slack.Models</x:String>
+      <x:String>UiPath.BAF.Models.Connection</x:String>
+      <x:String>UiPath.BAF.Models.Connection.APIConnection</x:String>
+      <x:String>UiPath.BAF.Telemetry</x:String>
+      <x:String>BAFLayer</x:String>
+      <x:String>UiPath.BAF.Models</x:String>
+      <x:String>UiPath.BAF.ServiceInterfaces</x:String>
+      <x:String>UiPath.Slack.Activities</x:String>
+      <x:String>UiPath.CodeGen.Activities</x:String>
+      <x:String>UiPath.BAF.Activities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Slack</AssemblyReference>
+      <AssemblyReference>UiPath.BAFLayer.Activities.Packaging</AssemblyReference>
+      <AssemblyReference>UiPath.Slack.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>C7E28BD090A_button_T.mwr5w2fjCgL1r0YaofwEgg1</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SendSlackMessage" sap:VirtualizedContainerService.HintSize="1070,2122" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="UserIDResponse" />
+      <Variable x:TypeArguments="njl:JObject" Name="UserIDJson" />
+      <Variable x:TypeArguments="x:String" Name="UserID" />
+      <Variable x:TypeArguments="x:String" Name="TextBody" />
+      <Variable x:TypeArguments="x:String" Name="ResponseBody" />
+      <Variable x:TypeArguments="x:Int32" Name="ResponseStatus" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="ResponseHeaders" />
+      <Variable x:TypeArguments="njl:JObject" Name="ResponseJSON" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If Condition="[Cbool(in_Config(&quot;TestMode&quot;))]" DisplayName="If Test Mode" sap:VirtualizedContainerService.HintSize="520,645" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,367" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aMBD+VyY/TgHap0nRVIlCWtDYyNq0e5j64DoHuCS26x+FDPG/7+wkbB1oY1K1l5UHyJ3v7vvucndmQy44FLkZSGEpF6BJvCFjoZyt9ST+uiGfaAkkJiXYhcxJRIbcqIJWjfpjq84q5WVjNRdzlK/g0XENOYmtdhDVSBPJqOVSoOG5zCuyjXbxnS72giciV5IL+wLhF0Bz0OZHJHn/AMxHvpC6pBY1OWfemerqfQ0TcRTmrgRhG83ZWYA2SgoDx0I/OtDVSwD/Cejey/ulGoLhc7Tf1AH6Aax+t/Vz4zDiOfj0XAH16RXMgsevHdDqb2nhgim5TDJyt73zXJ6FvF7I1VEhx+aL1MtZIVfJWmkwJmRY13cfLp1eZ+iU3vjvYTJJssSL/WwwCjSQyP+T67ENiYZTZw/O9j8cjprCa9e+du3fdwqTYWgPXQVgsElntDBwfGC/JRrfVMMTh1VKNSJZPwq4LZurLQ4TH5EbvKBwVKxVJu71TEHZsstk2aOK4+moGSH06zv00/zbbvyAatBv1nKtOm/DB+37jIHyg0WVKnjNrfdg0CEi/jrGseo0ie5ZIO/P4U6JN1t8HgtjqWDwnP0t/tb4p92T7kkdVuBUS/0B0JU4rqhddAzFfTWTmkEn5BS4Wf7EbdXgXwL+M+AMD6ZhLbRLAyvRlh7zR2lXsFQG3VSBbosw0EAteOoDyhaA70MunWrX3GanP9dyZUCPLZSNPtW8xLWDpP3Owi2WIks6h58TPH0XMvwNvwNcIjKhYu4wFOrAFz6DtT0vJFsGpO13ka6wBx8JAAA=" ConnectionId="c3615c80-8094-4025-ae9c-a17e28bd090a" DisplayName="Request ID" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_4" UiPathActivityTypeId="0579e0df-1b2f-355a-865c-19fa89856699">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">GET</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">["/users.lookupByEmail?email=" + in_Config("TestAddress").ToString]</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument" />
+              <isactr:FieldObject Name="body" Type="FieldArgument" />
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[UserIDResponse]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </isactr:ConnectorHttpActivity>
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,250" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aMBD+VyY/TgHap0nRVIlCWtDYyNq0e5j64DoHuCS26x+FDPG/7+wkbB1oY1K1l5UHyJ3v7vvucndmQy44FLkZSGEpF6BJvCFjoZyt9ST+uiGfaAkkJiXYhcxJRIbcqIJWjfpjq84q5WVjNRdzlK/g0XENOYmtdhDVSBPJqOVSoOG5zCuyjXbxnS72giciV5IL+wLhF0Bz0OZHJHn/AMxHvpC6pBY1OWfemerqfQ0TcRTmrgRhG83ZWYA2SgoDx0I/OtDVSwD/Cejey/ulGoLhc7Tf1AH6Aax+t/Vz4zDiOfj0XAH16RXMgsevHdDqb2nhgim5TDJyt73zXJ6FvF7I1VEhx+aL1MtZIVfJWmkwJmRY13cfLp1eZ+iU3vjvYTJJssSL/WwwCjSQyP+T67ENiYZTZw/O9j8cjprCa9e+du3fdwqTYWgPXQVgsElntDBwfGC/JRrfVMMTh1VKNSJZPwq4LZurLQ4TH5EbvKBwVKxVJu71TEHZsstk2aOK4+moGSH06zv00/zbbvyAatBv1nKtOm/DB+37jIHyg0WVKnjNrfdg0CEi/jrGseo0ie5ZIO/P4U6JN1t8HgtjqWDwnP0t/tb4p92T7kkdVuBUS/0B0JU4rqhddAzFfTWTmkEn5BS4Wf7EbdXgXwL+M+AMD6ZhLbRLAyvRlh7zR2lXsFQG3VSBbosw0EAteOoDyhaA70MunWrX3GanP9dyZUCPLZSNPtW8xLWDpP3Owi2WIks6h58TPH0XMvwNvwNcIjKhYu4wFOrAFz6DtT0vJFsGpO13ka6wBx8JAAA=" ConnectionId="605e1a50-42c6-4378-89f3-743814be70ef" DisplayName="Irina" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_5" UiPathActivityTypeId="0579e0df-1b2f-355a-865c-19fa89856699">
+                  <isactr:ConnectorHttpActivity.FieldObjects>
+                    <isactr:FieldObject Name="method" Type="FieldArgument">
+                      <isactr:FieldObject.Value>
+                        <InArgument x:TypeArguments="x:String">GET</InArgument>
+                      </isactr:FieldObject.Value>
+                    </isactr:FieldObject>
+                    <isactr:FieldObject Name="url" Type="FieldArgument">
+                      <isactr:FieldObject.Value>
+                        <InArgument x:TypeArguments="x:String">["/users.lookupByEmail?email=" + "irina.catauta@uipath.com"]</InArgument>
+                      </isactr:FieldObject.Value>
+                    </isactr:FieldObject>
+                    <isactr:FieldObject Name="headers" Type="FieldArgument" />
+                    <isactr:FieldObject Name="query" Type="FieldArgument" />
+                    <isactr:FieldObject Name="body" Type="FieldArgument" />
+                    <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                      <isactr:FieldObject.Value>
+                        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                      </isactr:FieldObject.Value>
+                    </isactr:FieldObject>
+                    <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                      <isactr:FieldObject.Value>
+                        <OutArgument x:TypeArguments="x:String">[UserIDResponse]</OutArgument>
+                      </isactr:FieldObject.Value>
+                    </isactr:FieldObject>
+                    <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                      <isactr:FieldObject.Value>
+                        <OutArgument x:TypeArguments="x:Int32" />
+                      </isactr:FieldObject.Value>
+                    </isactr:FieldObject>
+                  </isactr:ConnectorHttpActivity.FieldObjects>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </isactr:ConnectorHttpActivity>
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,108" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aMBD+VyY/TgHap0nRVIlCWtDYyNq0e5j64DoHuCS26x+FDPG/7+wkbB1oY1K1l5UHyJ3v7vvucndmQy44FLkZSGEpF6BJvCFjoZyt9ST+uiGfaAkkJiXYhcxJRIbcqIJWjfpjq84q5WVjNRdzlK/g0XENOYmtdhDVSBPJqOVSoOG5zCuyjXbxnS72giciV5IL+wLhF0Bz0OZHJHn/AMxHvpC6pBY1OWfemerqfQ0TcRTmrgRhG83ZWYA2SgoDx0I/OtDVSwD/Cejey/ulGoLhc7Tf1AH6Aax+t/Vz4zDiOfj0XAH16RXMgsevHdDqb2nhgim5TDJyt73zXJ6FvF7I1VEhx+aL1MtZIVfJWmkwJmRY13cfLp1eZ+iU3vjvYTJJssSL/WwwCjSQyP+T67ENiYZTZw/O9j8cjprCa9e+du3fdwqTYWgPXQVgsElntDBwfGC/JRrfVMMTh1VKNSJZPwq4LZurLQ4TH5EbvKBwVKxVJu71TEHZsstk2aOK4+moGSH06zv00/zbbvyAatBv1nKtOm/DB+37jIHyg0WVKnjNrfdg0CEi/jrGseo0ie5ZIO/P4U6JN1t8HgtjqWDwnP0t/tb4p92T7kkdVuBUS/0B0JU4rqhddAzFfTWTmkEn5BS4Wf7EbdXgXwL+M+AMD6ZhLbRLAyvRlh7zR2lXsFQG3VSBbosw0EAteOoDyhaA70MunWrX3GanP9dyZUCPLZSNPtW8xLWDpP3Owi2WIks6h58TPH0XMvwNvwNcIjKhYu4wFOrAFz6DtT0vJFsGpO13ka6wBx8JAAA=" ConnectionId="605e1a50-42c6-4378-89f3-743814be70ef" DisplayName="Request ID" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_3" UiPathActivityTypeId="0579e0df-1b2f-355a-865c-19fa89856699">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">GET</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">["/users.lookupByEmail?email=" + in_To]</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument" />
+              <isactr:FieldObject Name="body" Type="FieldArgument" />
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[UserIDResponse]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </isactr:ConnectorHttpActivity>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Parse Response" sap:VirtualizedContainerService.HintSize="520,122" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[UserIDJson]" JsonString="[UserIDResponse]" />
+    <Assign DisplayName="Get User ID" sap:VirtualizedContainerService.HintSize="520,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[UserID]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[UserIDJson("user")("id").ToString]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign DisplayName="Add ID to Body" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[in_Body]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_Body.Replace("&lt;&lt;channel&gt;&gt;",UserID)]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;User ID Found: &quot; + UserID]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <If Condition="[Cbool(in_Config(&quot;TestMode&quot;))]" DisplayName="If Test Mode" sap:VirtualizedContainerService.HintSize="520,386" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aMBD+VyY/TgHap0nRVIlCWtDYyNq0e5j64DoHuCS26x+FDPG/7+wkbB1oY1K1l5UHyJ3v7vvucndmQy44FLkZSGEpF6BJvCFjoZyt9ST+uiGfaAkkJiXYhcxJRIbcqIJWjfpjq84q5WVjNRdzlK/g0XENOYmtdhDVSBPJqOVSoOG5zCuyjXbxnS72giciV5IL+wLhF0Bz0OZHJHn/AMxHvpC6pBY1OWfemerqfQ0TcRTmrgRhG83ZWYA2SgoDx0I/OtDVSwD/Cejey/ulGoLhc7Tf1AH6Aax+t/Vz4zDiOfj0XAH16RXMgsevHdDqb2nhgim5TDJyt73zXJ6FvF7I1VEhx+aL1MtZIVfJWmkwJmRY13cfLp1eZ+iU3vjvYTJJssSL/WwwCjSQyP+T67ENiYZTZw/O9j8cjprCa9e+du3fdwqTYWgPXQVgsElntDBwfGC/JRrfVMMTh1VKNSJZPwq4LZurLQ4TH5EbvKBwVKxVJu71TEHZsstk2aOK4+moGSH06zv00/zbbvyAatBv1nKtOm/DB+37jIHyg0WVKnjNrfdg0CEi/jrGseo0ie5ZIO/P4U6JN1t8HgtjqWDwnP0t/tb4p92T7kkdVuBUS/0B0JU4rqhddAzFfTWTmkEn5BS4Wf7EbdXgXwL+M+AMD6ZhLbRLAyvRlh7zR2lXsFQG3VSBbosw0EAteOoDyhaA70MunWrX3GanP9dyZUCPLZSNPtW8xLWDpP3Owi2WIks6h58TPH0XMvwNvwNcIjKhYu4wFOrAFz6DtT0vJFsGpO13ka6wBx8JAAA=" ConnectionId="c3615c80-8094-4025-ae9c-a17e28bd090a" DisplayName="Slack HTTP Request" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_6" UiPathActivityTypeId="0579e0df-1b2f-355a-865c-19fa89856699">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">POST</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">/chat.postMessage</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument" />
+              <isactr:FieldObject Name="body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">[in_Body]</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[ResponseHeaders]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[ResponseBody]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32">[ResponseStatus]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </isactr:ConnectorHttpActivity>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1W32/aMBD+VyY/TgHap0nRVIlCWtDYyNq0e5j64DoHuCS26x+FDPG/7+wkbB1oY1K1l5UHyJ3v7vvucndmQy44FLkZSGEpF6BJvCFjoZyt9ST+uiGfaAkkJiXYhcxJRIbcqIJWjfpjq84q5WVjNRdzlK/g0XENOYmtdhDVSBPJqOVSoOG5zCuyjXbxnS72giciV5IL+wLhF0Bz0OZHJHn/AMxHvpC6pBY1OWfemerqfQ0TcRTmrgRhG83ZWYA2SgoDx0I/OtDVSwD/Cejey/ulGoLhc7Tf1AH6Aax+t/Vz4zDiOfj0XAH16RXMgsevHdDqb2nhgim5TDJyt73zXJ6FvF7I1VEhx+aL1MtZIVfJWmkwJmRY13cfLp1eZ+iU3vjvYTJJssSL/WwwCjSQyP+T67ENiYZTZw/O9j8cjprCa9e+du3fdwqTYWgPXQVgsElntDBwfGC/JRrfVMMTh1VKNSJZPwq4LZurLQ4TH5EbvKBwVKxVJu71TEHZsstk2aOK4+moGSH06zv00/zbbvyAatBv1nKtOm/DB+37jIHyg0WVKnjNrfdg0CEi/jrGseo0ie5ZIO/P4U6JN1t8HgtjqWDwnP0t/tb4p92T7kkdVuBUS/0B0JU4rqhddAzFfTWTmkEn5BS4Wf7EbdXgXwL+M+AMD6ZhLbRLAyvRlh7zR2lXsFQG3VSBbosw0EAteOoDyhaA70MunWrX3GanP9dyZUCPLZSNPtW8xLWDpP3Owi2WIks6h58TPH0XMvwNvwNcIjKhYu4wFOrAFz6DtT0vJFsGpO13ka6wBx8JAAA=" ConnectionId="605e1a50-42c6-4378-89f3-743814be70ef" DisplayName="Slack HTTP Request" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_2" UiPathActivityTypeId="0579e0df-1b2f-355a-865c-19fa89856699">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">POST</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">/chat.postMessage</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument" />
+              <isactr:FieldObject Name="body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">[in_Body]</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[ResponseHeaders]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[ResponseBody]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32">[ResponseStatus]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </isactr:ConnectorHttpActivity>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="520,122" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[ResponseJSON]" JsonString="[ResponseBody]" />
+    <If Condition="[ResponseStatus &lt;&gt; 200 OrElse ResponseJSON.ContainsKey(&quot;errors&quot;)]" DisplayName="If Failed to send message" sap:VirtualizedContainerService.HintSize="520,432" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[new System.Exception(&quot;Failed to send slack message: code: &quot; + ResponseStatus.ToString + &quot;, error message:&quot; + ResponseBody)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Message sent&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+  </Sequence>
+</Activity>
