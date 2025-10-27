@@ -1,0 +1,50 @@
+﻿{
+  "channel": "<<channel>>",
+  "text": "Document rejection notification",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "🚫 Uploaded Documents Rejected",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "The Bootcamp uploaded documents were rejected!"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Reason:*\n```<<reason>>```"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "When you have the correct documents, please re-upload them using the button below:"
+      }
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "📤 Reupload Documents",
+            "emoji": true
+          },
+          "url": "<<appURL>>",
+          "style": "primary"
+        }
+      ]
+    }
+  ]
+}
